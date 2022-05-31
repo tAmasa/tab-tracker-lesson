@@ -5,13 +5,13 @@
         <v-flex>
           <div class="white elevation-1">
             <v-toolbar flat dense class="light-green" dark>
-              <v-toolbar-title>Register</v-toolbar-title>
+              <v-toolbar-title>Login</v-toolbar-title>
             </v-toolbar>
             <div class="pl-6 pr-6 pt-2 pb-2">
             <form
             name = "tab-tracker-form"
             autocomplete="off">
-                <h1>Register</h1>
+                <h1>Login</h1>
                 <v-text-field
                   type="email"
                   name="email"
@@ -28,7 +28,7 @@
             </form>
               <br />
               <v-alert v-html="error"/>
-              <v-btn class="light-green" @click="register">Register</v-btn>
+              <v-btn class="light-green" @click="login">Login</v-btn>
             </div>
           </div>
         </v-flex>
@@ -48,9 +48,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
