@@ -1,4 +1,4 @@
-console.log('hellos')
+console.log('Server running')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -15,12 +15,12 @@ require('./routes')(app)
 
 app.get('/status', (req,res) => {
     res.send({
-        message: 'hello tatus!'
+        message: 'hello status!'
     })
 })
 
 
-
+//Todo! use {force: true} to reset server
 sequelize.sync()
   .then(() => {
     app.listen(config.port)

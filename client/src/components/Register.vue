@@ -27,7 +27,7 @@
                 ></v-text-field>
             </form>
               <br />
-              <v-alert v-html="error"/>
+              <v-alert v-html="stateMessage"/>
               <v-btn class="light-green" @click="register">Register</v-btn>
             </div>
           </div>
@@ -44,18 +44,21 @@ export default {
     return {
       email: '',
       password: '',
-      error: null
+      stateMessage: null
     }
   },
   methods: {
     async register () {
       try {
-        await AuthenticationService.register({
+        const response = await AuthenticationService.register({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+        this.stateMessage = 'Welcome!'
       } catch (error) {
-        this.error = error.response.data.error
+        this.stateMessage = error.response.data.error
       }
     }
   }
@@ -70,7 +73,7 @@ export default {
   color:white
 }
 .v-alert {
-  color: red
+  color: black
 }
 
 </style>

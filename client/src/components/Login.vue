@@ -27,8 +27,19 @@
                 ></v-text-field>
             </form>
               <br />
-              <v-alert v-html="error"/>
-              <v-btn class="light-green" @click="login">Login</v-btn>
+              <v-alert v-html="stateMessage"/>
+              <!-- <v-btn class="light-green" @click="login">Login</v-btn> -->
+              <v-btn class="light-green"
+              v-if="!$store.state.isUserLoggedIn"
+              @click="login"
+              >Login</v-btn>
+               <br />
+
+              <v-btn class="gray"
+              v-if="$store.state.isUserLoggedIn"
+              @click="logout">
+              Log Out</v-btn>
+
             </div>
           </div>
         </v-flex>
@@ -44,21 +55,37 @@ export default {
     return {
       email: '',
       password: '',
-      error: null
+      stateMessage: null
     }
   },
   methods: {
     async login () {
       try {
-        await AuthenticationService.login({
+        console.log('login pressed')
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+        this.stateMessage = 'Successfully logged in!'
       } catch (error) {
-        this.error = error.response.data.error
+        this.stateMessage = error.response.data.error
       }
+    },
+    async logout () {
+      console.log('logout pressed')
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.stateMessage = 'Successfully logged out.'
+      this.email = ''
+      this.password = ''
+      this.$router.push({
+        name: 'root'
+      })
     }
   }
+
 }
 </script>
 
@@ -70,7 +97,7 @@ export default {
   color:white
 }
 .v-alert {
-  color: red
+  color: black
 }
 
 </style>
