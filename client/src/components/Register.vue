@@ -3,12 +3,8 @@
     <div>
       <v-layout column>
         <v-flex>
-          <div class="white elevation-1">
-            <v-toolbar flat dense class="light-green" dark>
-              <v-toolbar-title>Register</v-toolbar-title>
-            </v-toolbar>
-            <div class="pl-6 pr-6 pt-2 pb-2">
-            <form
+          <panel title="Register">
+          <form
             name = "tab-tracker-form"
             autocomplete="off">
                 <h1>Register</h1>
@@ -29,8 +25,7 @@
               <br />
               <v-alert v-html="stateMessage"/>
               <v-btn class="light-green" @click="register">Register</v-btn>
-            </div>
-          </div>
+          </panel>
         </v-flex>
       </v-layout>
     </div>
@@ -39,7 +34,11 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
 export default {
+  components: {
+    Panel
+  },
   data () {
     return {
       email: '',

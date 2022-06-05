@@ -1,14 +1,9 @@
 <template>
-  <v-app>
-    <div>
-      <v-layout column>
+<v-app>
+    <v-layout column>
         <v-flex>
-          <div class="white elevation-1">
-            <v-toolbar flat dense class="light-green" dark>
-              <v-toolbar-title>Login</v-toolbar-title>
-            </v-toolbar>
-            <div class="pl-6 pr-6 pt-2 pb-2">
-            <form
+    <panel title = "Login">
+<form
             name = "tab-tracker-form"
             autocomplete="off">
                 <h1>Login</h1>
@@ -39,18 +34,19 @@
               v-if="$store.state.isUserLoggedIn"
               @click="logout">
               Log Out</v-btn>
-
-            </div>
-          </div>
-        </v-flex>
-      </v-layout>
-    </div>
+    </panel>
+    </v-flex>
+  </v-layout>
   </v-app>
 </template>
 
 <script>
+import Panel from '@/components/Panel'
 import AuthenticationService from '@/services/AuthenticationService'
 export default {
+  components: {
+    Panel
+  },
   data () {
     return {
       email: '',
@@ -90,12 +86,7 @@ export default {
 </script>
 
 <style scoped>
-.toolbar__title{
-  color: white
-}
-.btn__content {
-  color:white
-}
+
 .v-alert {
   color: black
 }
