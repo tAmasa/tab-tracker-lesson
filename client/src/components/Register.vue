@@ -11,6 +11,7 @@
                 <v-text-field
                   type="email"
                   name="email"
+                  label="email"
                   v-model="email"
                   placeholder="johnny@appleseed.com"
                 ></v-text-field>
@@ -18,6 +19,7 @@
                 <v-text-field
                   type="password"
                   name="password"
+                  label="password"
                   v-model="password"
                   placeholder="8 characters or more"
                 ></v-text-field>
@@ -48,6 +50,7 @@ export default {
   },
   methods: {
     async register () {
+      console.log('pressed register')
       try {
         const response = await AuthenticationService.register({
           email: this.email,

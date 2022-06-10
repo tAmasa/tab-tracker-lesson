@@ -1,0 +1,58 @@
+{
+  "state": {
+    "currentID": "patch0"
+  },
+    "database": [
+      {
+        "id": 23,
+        "name": "Sal"
+      },
+      {
+        "id": 24,
+        "name": "Kevin"
+      },
+      {
+        "id": 25,
+        "name": "Lora"
+      }
+    ],
+    "versions": [
+      {
+        "version": {
+          "versionID": "patch1",
+          "displayName": "Test display name"
+        },
+        "patch": [
+          {
+            "op": "replace",
+            "path": "/database/0/name",
+            "value": "Simon"
+          },
+          {
+            "op": "add",
+            "path": "/database/3",
+            "value": {
+              "id": 26,
+              "name": "Graham"
+            }
+          }
+        ]
+      },
+      {
+        "version": {
+          "versionID": "patch2",
+          "displayName": "Test display name"
+        },
+        "patch": [
+          {
+            "op": "remove",
+            "path": "/database/0"
+          },
+          {
+            "op": "remove",
+            "path": "/database/1"
+          }
+        ]
+      }
+    ]
+  }

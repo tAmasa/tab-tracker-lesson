@@ -21,7 +21,7 @@ app.get('/status', (req,res) => {
 
 
 //Todo! use {force: true} to reset server
-sequelize.sync()
+sequelize.sync({})
   .then(() => {
     app.listen(config.port)
     console.log(`Server started on port ${config.port}`)

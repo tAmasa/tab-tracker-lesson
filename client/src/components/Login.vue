@@ -9,17 +9,36 @@
                 <h1>Login</h1>
                 <v-text-field
                   type="email"
-                  name="email"
                   v-model="email"
+                  label="email"
                   placeholder="johnny@appleseed.com"
                 ></v-text-field>
                 <br />
                 <v-text-field
                   type="password"
-                  name="password"
                   v-model="password"
+                  label="password"
                   placeholder="8 characters or more"
                 ></v-text-field>
+<!--
+                <v-text-field
+                  v-model="password"
+                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="show1 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Normal with hint text"
+                  hint="At least 8 characters"
+                  counter
+                  @click:append="show1 = !show1"
+                ></v-text-field> -->
+
+                <v-text-field
+                  label="label"
+                  v-model="value"
+                  :rules="[() => !!value || 'This field is required']"
+                  required
+                ></v-text-field>
+
             </form>
               <br />
               <v-alert v-html="stateMessage"/>
